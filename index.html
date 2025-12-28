@@ -72,8 +72,13 @@
   </head>
 
   <body>
-    
-    <!-- ----------- ΚΟΥΜΠΙΑ ----------- -->
+    <a-scene>
+      <a-assets>
+        <audio id="clickSound" src="assets/sounds/click.mp3"></audio>
+      </a-assets>
+    </a-scene>
+
+    <!--  ΚΟΥΜΠΙΑ  -->
     <div id="controls">
       <div class="btn" onclick="playClick() ; rotateSlice('U')">Up</div>
       <div class="btn" onclick="playClick() ; rotateSlice('D')">Down</div>
@@ -102,11 +107,8 @@
     </script>
 
 
-    <!-- ----------- SCENE ----------- -->
+    <!--  SCENE  -->
     <a-scene stats>
-        
-        <audio id="clickSound" src="assets/sounds/click.mp3"></audio>
-
 
       <!-- BACKGROUND -->
       <a-assets>
@@ -123,7 +125,7 @@
                  position="2 3 2"></a-entity>
       <!--3.Rim Light-->
       <a-entity light="type: directional; intensity: 0.9; color: #88aaff"
-                 position="-2 3 -4"></a-entity>
+                 postition="-2 3 -4"></a-entity>
       <!--4.Fill Light-->
       <a-entity light="type: point; intensity: 0.4; distance: 8; color: #ffffff"
                 position="-3 2 -2"></a-entity>

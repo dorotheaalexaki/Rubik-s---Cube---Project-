@@ -5,9 +5,7 @@ AFRAME.registerComponent("rubiks-cube", {
     const cubelets = [];
     const modelURL = "assets/models/rubiks_cube_standard_solid_v3.glb";
 
-    // ---------------------------
     // Ρυθμίσεις Κύβου
-    // ---------------------------
     const SCALE   = 2.0;     // <——  Μέγεθος κύβου
     const SPACING = 2.3;    // <——  Απόσταση cubes
     const SPACING_Y = 2.3;
@@ -16,9 +14,7 @@ AFRAME.registerComponent("rubiks-cube", {
 
     const coords = [-1, 0, 1];
 
-    // ---------------------------
     //  Δημιουργία Cubes
-    // ---------------------------
     coords.forEach(x => {
       coords.forEach(y => {
         coords.forEach(z => {
@@ -49,9 +45,7 @@ AFRAME.registerComponent("rubiks-cube", {
       });
     });
 
-    // ---------------------------
     //  Βοηθητικές Συναρτήσεις
-    // ---------------------------
     function round(v) { return Math.round(v); }
 
     function relRotate(rel, axis, angleDeg) {
@@ -68,9 +62,7 @@ AFRAME.registerComponent("rubiks-cube", {
         return { x: x * Math.cos(a) - y * Math.sin(a), y: x * Math.sin(a) + y * Math.cos(a), z };
     }
 
-    // ---------------------------
     // Slicing
-    // ---------------------------
     const slices = {
       U: { axis: "y", value: 1, angle: 90 },
       D: { axis: "y", value: -1, angle: -90 },
@@ -80,10 +72,8 @@ AFRAME.registerComponent("rubiks-cube", {
       B: { axis: "z", value: -1, angle: -90 }
     };
 
-    // ---------------------------
     //    Περιστροφές cubes
-    // ---------------------------
-    function rotateSlice(face) {
+      function rotateSlice(face) {
       const def = slices[face];
       if (!def) return;
 
