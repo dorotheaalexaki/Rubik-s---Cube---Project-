@@ -3,7 +3,7 @@ AFRAME.registerComponent("rubiks-cube", {
     
     const root = this.el;
     const cubelets = [];
-    const modelURL = "https://kostasgian21.github.io/computer_graphics/rubiks_cube_standard_solid_v3.glb";
+    const modelURL = "assets/models/rubiks_cube_standard_solid_v3.glb";
 
     // ---------------------------
     // Ρυθμίσεις Κύβου
