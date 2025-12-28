@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rubik's Cube Project</title>
+    <!-- A-FRAME -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- RUBIK LOGIC -->
+    <script src="js/rubiks.js"></script>
+
+    <!-- CSS -->
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      #controls {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 32px;
+        z-index: 999;
+      }
+
+      .btn {
+        padding: 10px 18px;
+        background: #444;
+        border-radius: 8px;
+        color: white;
+        font-family: Montserrat;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 0 12px;
+        cursor: pointer;
+        user-select: none;
+        border: 2px solid #222;
+      }
+
+      .btn:hover {
+        background: #666;
+      }
+
+      #resetContainer {
+        position: fixed;
+        bottom: 20px ;
+        left: 20px;
+        z-index: 999;
+      }
+      .reset-btn {
+        background: #444;
+        color: black;
+        font-family: Montserrat;
+        font-weight: bold;
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: 2px solid #222;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      .reset-btn:hover {
+        background: #666;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <a-scene>
+      <a-assets>
+        <audio id="clickSound" src="assets/sounds/click.mp3"></audio>
+      </a-assets>
+    </a-scene>
+
+    <!-- ----------- ΚΟΥΜΠΙΑ ----------- -->
+    <div id="controls">
+      <div class="btn" onclick="playClick() ; rotateSlice('U')">Up</div>
+      <div class="btn" onclick="playClick() ; rotateSlice('D')">Down</div>
+      <div class="btn" onclick="playClick() ; rotateSlice('L')">Left</div>
+      <div class="btn" onclick="playClick() ; rotateSlice('R')">Right</div>
+      <div class="btn" onclick="playClick() ; rotateSlice('F')">Front</div>
+      <div class="btn" onclick="playClick() ; rotateSlice('B')">Back</div>
+    </div>
+    <div id="resetContainer">
+      <div class="btn reset-btn" onclick="resetCube();">Reset</div>
+    </div>
+    <script>
+      function playClick() {
+        const snd = document.querySelector('#clickSound');
+        snd.currentTime = 0;
+        snd.play() ;
+
+      }
+    </script>
+    <script>
+        window.onload = () => {
+        document.querySelectorAll(".btn").forEach(b => {
+        b.style.background = "#37344D";
+        });
+        };
+    </script>
+
+
+    <!-- ----------- SCENE ----------- -->
+    <a-scene stats>
+
+      <!-- BACKGROUND -->
+      <a-assets>
+        <img id="sky" src="assets/textures/sky360.jpg">
+      </a-assets>
+
+      <a-sky src="#sky"></a-sky>
+
+      <!-- ΦΩΤΙΣΜΟΣ -->
+      <!--1.Ambient Light-->
+      <a-entity light="type: ambient; intensity: 0.35"></a-entity>
+      <!--2.Key Light-->
+      <a-entity light="type: directional; intensity: 1.1; castShadow: true"
+                 position="2 3 2"></a-entity>
+      <!--3.Rim Light-->
+      <a-entity light="type: directional; intensity: 0.9; color: #88aaff"
+                 postition="-2 3 -4"></a-entity>
+      <!--4.Fill Light-->
+      <a-entity light="type: point; intensity: 0.4; distance: 8; color: #ffffff"
+                position="-3 2 -2"></a-entity>
+
+
+
+      <!-- ΚΥΒΟΣ -->
+      <a-entity id="rubik" rubiks-cube position="0 1.3 -3"></a-entity>
+
+      <!-- ΔΙΑΚΟΣΜΗΣΗ -->
+      <a-entity gltf-model="url(assets/models/onomam.glb)"
+                position="0 0 -3"
+                scale="10 10 10"
+                rotation="75 0 0"></a-entity>
+                
+
+      
+                
+      <a-entity gltf-model="url(assets/models/planet.glb)"
+                position="6 5 -5"
+                scale="17 17 17"
+                rotation="-90 180 0"
+                material="emmisive: #ffefaa; emmisiveIntensity: 0.7"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 15000; easing: linear">
+      </a-entity>
+      <a-entity gltf-model="url(assets/models/star.glb)"
+                position="-3.5 0.1 -3"
+                scale="8 8 8"
+                rotation="-90 180 0"
+                material="emmisive: #ffefaa; emmisiveIntensity: 0.7"
+                animation="property: scale; from: 10 10 10; to: 12 12 12; dir: alternate; dur: 1500; easing: easeInOutSine; loop: true">
+>
+</a-entity>
+      </a-entity>
+      
+      
+
+      <!-- ΚΑΜΕΡΑ -->
+      <a-entity camera look-controls wasd-controls="enabled: false" position="0 1.6 0"></a-entity>
+
+    </a-scene>
+
+    <!--Διόρθωση για πληκτρολόγιο -->
+    <script>
+      window.addEventListener("load", () => {
+        document.body.tabIndex = 0;
+        document.body.focus();
+        window.focus();
+      });
+    </script>
+    <script>
+      function resetCube() {
+        location.reload(); 
+      }
+    </script>
+    
+
+  </body>
+</html>
