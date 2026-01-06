@@ -9,6 +9,8 @@
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
+    <!-- RUBIK LOGIC -->
+    <script src="js/rubiks.js"></script>
 
     <!-- CSS -->
     <style>
@@ -66,15 +68,17 @@
         background: #666;
       }
 
-    </style>    
-    <script src="js/rubiks.js"></script>
-
+    </style>
   </head>
 
   <body>
-    
+    <a-scene>
+      <a-assets>
+        <audio id="clickSound" src="assets/sounds/click.mp3"></audio>
+      </a-assets>
+    </a-scene>
 
-    <!--  ΚΟΥΜΠΙΑ  -->
+    <!-- ----------- ΚΟΥΜΠΙΑ ----------- -->
     <div id="controls">
       <div class="btn" onclick="playClick() ; rotateSlice('U')">Up</div>
       <div class="btn" onclick="playClick() ; rotateSlice('D')">Down</div>
@@ -103,12 +107,8 @@
     </script>
 
 
-    <!--  SCENE  -->
+    <!-- ----------- SCENE ----------- -->
     <a-scene stats>
-      
-       <a-assets>
-        <audio id="clickSound" src="assets/sounds/click.mp3"></audio>
-      </a-assets>
 
       <!-- BACKGROUND -->
       <a-assets>
